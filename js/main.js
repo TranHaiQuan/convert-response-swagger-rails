@@ -1,9 +1,11 @@
 $(function() {
   $("#submit").on("click", function() {
+    $("#loading-wrapper").removeClass("d-none");
+    $("#loading-wrapper").fadeIn();
     var datas = JSON.parse($("#sample").val());
     var a = "";
     var fd = new FormData();
-    fd.append( 'code', handleDatas(datas).substring(1, result.length) + "\n");
+    fd.append( 'code', handleResult(datas));
     $.ajax({
       url: "https://tools.tutorialspoint.com/format_ruby.php",
       method: "POST",
@@ -14,14 +16,28 @@ $(function() {
       success: function(response) {
         $("#result").val(response.code);
         $("#result").select();
-    document.execCommand("copy");
+        $("#loading-wrapper").addClass("d-none");
+        $("#loading-wrapper").fadeOut();
+        document.execCommand("copy");
       },
       error: function(){
         location.reload();
       }
     });
-
   })
+
+  $("#reset").on("click", function() {
+    $("#sample").val("");
+    $("#result").val("");
+    $("#status-code").val("");
+    $("#description").val("");
+  })
+
+  function handleResult(datas) {
+    var statusCode = $("#status-code").val();
+    var description = $("#description").val();
+    return "response "+ statusCode +" do\nkey :description, \"" + description + "\"\nschema do" + handleDatas(datas) + "\nend\nend\n";
+  }
 
   function handleDatas(datas) {
     var result = "";

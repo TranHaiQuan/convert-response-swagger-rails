@@ -4,29 +4,73 @@
   <title>Convert</title>
   <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
+  <div id="loading-wrapper" class="d-none">
+    <div class="spinner"></div>
+  </div>
   <div class="container">
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="http://convert-swagger-response.surge.sh">
+        <img src="images/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Convert Swagger response to Ruby code
+      </a>
+    </nav>
+    <br>
     <div class="row">
       <div class="col-md-5">
-        <textarea id="sample" rows="50" cols="40">
+        <label class="font-weight-bold">Response</label>
+        <textarea id="sample" rows="50" class="text-area form-control">
 {
   "status":"ok",
   "message":"Success",
   "active":true,
-  "id":1
+  "id":14
 }
-        </textarea>
+</textarea>
       </div>
-      <div class="col-md-2">
-        <button id="submit" class="btn btn-primary">Convert & Copy</button>
+      <div class="col-md-2 text-center">
+        <label class="font-weight-bold">::]]]</label><br>
+        <label>Status Code</label>
+        <input type="text" class="form-control" id="status-code" value="200"><br>
+        <label>Description</label>
+        <input type="text" class="form-control" id="description" value="Sign up"><br>
+        <button id="submit" class="btn btn-success">Convert & Copy</button><br><br>
+        <button id="reset" class="btn btn-danger">RESET INPUT</button>
       </div>
       <div class="col-md-5">
-        <textarea id="result" rows="50" cols="40"></textarea>
+        <label class="font-weight-bold">Ruby code formatted</label>
+        <textarea id="result" rows="50" class="text-area form-control">response 200 do
+  key :description, "Sign up"
+  schema do
+    property :status do
+      key :type, :string
+      key :example, "ok"
+    end
+    property :message do
+      key :type, :string
+      key :example, "Success"
+    end
+    property :active do
+      key :type, :boolean
+      key :example, true
+    end
+    property :id do
+      key :type, :integer
+      key :example, 14
+    end
+  end
+end
+
+        </textarea>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12"><p class="text-center"><i>Develop by </i><a href="https://github.com/TranHaiQuan/convert-response-swagger-rails">TranHaiQuan</a></p></div>
     </div>
   </div>
 </body>

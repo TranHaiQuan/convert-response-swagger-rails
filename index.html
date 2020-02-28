@@ -3,16 +3,26 @@
   <meta charset="UTF-8">
   <title>Convert</title>
   <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
   <div class="container">
     <div class="row">
       <div class="col-md-5">
         <textarea id="sample" rows="50" cols="40">
+{
+  "status":"ok",
+  "message":"Success",
+  "active":true,
+  "id":1
+}
         </textarea>
       </div>
       <div class="col-md-2">
-        <button id="submit">Convert & Copy</button>
+        <button id="submit" class="btn btn-primary">Convert & Copy</button>
       </div>
       <div class="col-md-5">
         <textarea id="result" rows="50" cols="40"></textarea>
